@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kela-demo – Opetuskäyttöön</title>
+<style>
+  * { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+  body {
+    margin: 0;
+    background: #f4f6f8;
+    color: #1d2a3a;
+  }
+
+  /* Opetusbanneri sivun ylälaidassa */
+  .demo-banner {
+    background: #fff3cd;
+    color: #856404;
+    border-bottom: 1px solid #ffeeba;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* Yläpalkki / Header */
+  header {
+    background: #003366;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+
+  /* Navigaatiovalikko */
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+
+  nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  nav a.btn-omakela {
+    background: #e65100;
+  }
+
+  nav a.btn-omakela:hover {
+    background: #c63d00;
+  }
+
+  nav a.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* Sisältöalueet */
+  .container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 28px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  /* Etusivun elementit */
+  .hero {
+    background: #eef4f8;
+    padding: 25px;
+    border-radius: 6px;
+    border-left: 5px solid #003366;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 { margin-top: 0; color: #003366; }
+
+  .cta-btn {
+    background: #e65100;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .cta-btn:hover { background: #c63d00; }
+
+  /* Pankkipainikkeet ruudukossa */
+  .bank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .bank {
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003366;
+    background: #ffffff;
+    border: 2px solid #bdcad8;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .bank:hover {
+    background: #eef6fc;
+    border-color: #003366;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #003366;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #message {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 6px;
+  }
+
+  footer {
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    padding: 30px 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  ⚠️ DEMOVERSIO / OPETUSMATERIAALI · TÄMÄ EI OLE OIKEA KELAN SIVU
+</div>
+
+<header>
+  <div class="logo" onclick="showPage('home')">Kela</div>
+  <nav>
+    <ul>
+      <li><a href="#" class="btn-omakela" onclick="showPage('login')">OmaKela</a></li>
+      <li><a href="#" class="disabled" onclick="alert('Tämä valikko ei ole käytössä tässä demonstraatiossa.')">Asiakaspalvelu</a></li>
+      <li><a href="#" class="disabled" onclick="alert('Tämä valikko ei ole käytössä tässä demonstraatiossa.')">Laskurit</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ETUSIVU -->
+<div id="page-home" class="container">
+  <div class="hero">
+    <h1>Tervetuloa Kelaan</h1>
+    <p>Tämä on tietoturvan opetuskäyttöön tehty mallisivu verkkourkinnan ja huijassivustojen tunnistamiseen.</p>
+    <button class="cta-btn" onclick="showPage('login')">Kirjaudu OmaKelaan &rarr;</button>
+  </div>
+
+  <h2>Ajankohtaista tietoturvasta</h2>
+  <p>Varo huijausviestejä! Kela ei koskaan lähetä tekstiviestillä tai sähköpostilla suoria linkkejä kirjautumissivuille. Kirjaudu aina kirjoittamalla osoite itse selaimeen.</p>
+</div>
+
+<!-- OMAKELA / TUNNISTAUTUMISSIVU -->
+<div id="page-login" class="container hidden">
+  <span class="back-link" onclick="showPage('home')">&larr; Takaisin etusivulle</span>
+  
+  <h1>Tunnistautuminen OmaKela-palveluun</h1>
+  <p>Valitse oma pankkisi tunnistautuaksesi palveluun:</p>
+
+  <div class="bank-grid">
+    <button class="bank" onclick="choose('OP')">OP</button>
+    <button class="bank" onclick="choose('Nordea')">Nordea</button>
+    <button class="bank" onclick="choose('Danske Bank')">Danske Bank</button>
+    <button class="bank" onclick="choose('Säästöpankki')">Säästöpankki</button>
+    <button class="bank" onclick="choose('Aktia')">Aktia</button>
+    <button class="bank" onclick="choose('S-Pankki')">S-Pankki</button>
+    <button class="bank" onclick="choose('POP Pankki')">POP Pankki</button>
+  </div>
+
+  <div id="message" aria-live="polite"></div>
+</div>
+
+<footer>
+  Kuvitteellinen käyttöliittymä opetuskäyttöön · Ei kerää henkilötietoja tai tunnuksia
+</footer>
+
+<script>
+function showPage(pageId) {
+  document.getElementById('page-home').classList.add('hidden');
+  document.getElementById('page-login').classList.add('hidden');
+  
+  if (pageId === 'home') {
+    document.getElementById('page-home').classList.remove('hidden');
+  } else if (pageId === 'login') {
+    document.getElementById('page-login').classList.remove('hidden');
+  }
+}
+
+function choose(bank) {
+  var msgDiv = document.getElementById("message");
+  msgDiv.style.background = "#eef6fc";
+  msgDiv.style.border = "1px solid #1769aa";
+  msgDiv.innerHTML =
+    "<h3 style='margin-top:0; color:#003366;'>Valitsit: " + bank + "</h3>" +
+    "<p><strong>Tämä on opetusharjoitus!</strong> Tietoverkkohuijauksissa sivut saattavat näyttää täysin aidoilta, mutta verkko-osoite (URL) paljastaa huijauksen.</p>" +
+    "<p>Oikeaa pankkipalvelua ei avattu eikä tunnuksia suoritettu.</p>";
+}
+</script>
+
+</body>
+</html>
